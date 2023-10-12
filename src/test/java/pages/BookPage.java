@@ -20,10 +20,18 @@ public class BookPage {
 
     @FindBy(xpath = "(//*[@id='search']//span[@class='a-size-base-plus a-color-base a-text-normal'])[1]")
     private WebElement firstBook;
+
+
+
     public void checkResultBook() {
+
         Assert.assertTrue(ReusableMethods.getElementText(bookResult).contains("book"));
+
     }
     public void clickFirstBook() {
+
         ReusableMethods.jseWithClick(driver,firstBook);
     }
+
+
 }

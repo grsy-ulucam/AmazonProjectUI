@@ -21,13 +21,25 @@ public class BasketPage {
     @FindBy(xpath = "//*[@id='NATC_SMART_WAGON_CONF_MSG_SUCCESS']/span[@class='a-size-medium-plus a-color-base sw-atc-text a-text-bold']")
     private WebElement  completeTextBasket;
 
+    @FindBy(id= "nav-cart-count")
+    private WebElement basketArea;
+
+    @FindBy(xpath= "(//label[text()='Mktr:']/following::input)[2]")
+    private WebElement deleteButtonInBasket;
 
     public void clickAddBasket() {
+
         ReusableMethods.jseWithClick(driver,addBasketButton);
+
     }
 
     public void checkTextCompleteBasket() {
+
         Assert.assertEquals("Sepete Eklendi",ReusableMethods.getElementText(completeTextBasket));
+        ReusableMethods.hover(basketArea);
+        ReusableMethods.jseWithClick(driver,basketArea);
+        ReusableMethods.hover(deleteButtonInBasket);
+        ReusableMethods.jseWithClick(driver,deleteButtonInBasket);
 
     }
 }

@@ -20,6 +20,26 @@ import java.util.Random;
 
 public class ReusableMethods {
 
+
+
+    public static void scrollUntilElementVisible(WebDriver driver, WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        // Belirlediğimiz element görülebilene kadar scroll yap
+        while (true) {
+            if (element.isDisplayed()) {
+                break;
+            } else {
+                js.executeScript("arguments[0].scrollIntoView(true);", element);
+            }
+        }
+    }
+
+    public static void scrollToBottom(WebDriver driver) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    }
+
     public static void sendKeyWithEnterJS(WebDriver driver, WebElement element, String text) {
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value = arguments[1]", element, text);
@@ -80,8 +100,6 @@ public class ReusableMethods {
         Actions actions = new Actions(utilities.Driver.getDriver());
         actions.moveToElement(element).perform();
     }
-
-
 
 
 

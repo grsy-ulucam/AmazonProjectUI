@@ -11,6 +11,8 @@ public class HomeSteps {
 
     @When("Search a {string} in search bar on home page")
     public void searchAInSearchBarOnHomePage(String product) {
+
         homePage.searchBook(product);
+
     }
 }

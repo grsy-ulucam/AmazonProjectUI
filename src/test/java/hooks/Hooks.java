@@ -1,14 +1,10 @@
 package hooks;
 
 import io.cucumber.java.After;
-import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-
 import org.openqa.selenium.firefox.FirefoxDriver;
-import utilities.ConfigReader;
 import utilities.Driver;
 
 import java.io.File;
@@ -31,7 +27,7 @@ public class Hooks {
 
     public void tearDown() throws IOException {
 
-        File source = ((FirefoxDriver) Driver.getDriver()).getFullPageScreenshotAs(OutputType.FILE);
+       File source = ((FirefoxDriver) Driver.getDriver()).getFullPageScreenshotAs(OutputType.FILE);
 
         FileUtils.copyFile(source, new File("test-output\\Screenshots\\amazonFullScreenshot.png"));
 

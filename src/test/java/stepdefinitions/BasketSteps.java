@@ -11,11 +11,13 @@ public class BasketSteps {
 
     @And("Click add the basket on basket page")
     public void clickAddTheBasketOnBasketPage() {
+
         basketPage.clickAddBasket();
     }
 
     @Then("Verify text about add the basket on basket page")
     public void verifyTextAboutAddTheBasketOnBasketPage() {
        basketPage.checkTextCompleteBasket();
+
     }
 }
