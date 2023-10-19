@@ -25,8 +25,10 @@ public class BookSteps {
     }
 
 
+    @And("Click last book on book page")
+    public void clickLastBookOnBookPage() {
 
+        bookPage.clickLastBook();
 
-
-
+    }
 }

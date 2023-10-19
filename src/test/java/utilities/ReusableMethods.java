@@ -1,6 +1,7 @@
 package utilities;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
@@ -19,21 +20,30 @@ import java.util.Random;
 
 
 public class ReusableMethods {
-
-
-
-    public static void scrollUntilElementVisible(WebDriver driver, WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        // Belirlediğimiz element görülebilene kadar scroll yap
-        while (true) {
-            if (element.isDisplayed()) {
-                break;
-            } else {
-                js.executeScript("arguments[0].scrollIntoView(true);", element);
+    public static boolean verifyTextInList(List<String> textList, String targetText) {
+        for (String text : textList) {
+            if (text != null && text.equals(targetText)) {
+                Assert.assertEquals(targetText,text);
+                return true;
             }
         }
+        return false;
     }
+
+
+    public static void selectOptionByValue(WebDriver driver, WebElement element, String value) {
+        Select select = new Select(element);
+        select.selectByValue(value);
+    }
+
+    public static void scrollAndClickElement(WebDriver driver, WebElement element) {
+        // Elementin görünmesini sağlamak için JavaScript kullanarak sayfayı kaydır
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+        // Elemente tıkla
+        element.click();
+    }
+
 
     public static void scrollToBottom(WebDriver driver) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -78,6 +88,11 @@ public class ReusableMethods {
         jse.executeScript("arguments[0].value = arguments[1]", element, text);
     }
 
+    public static void hover(WebElement element) {
+        Actions actions = new Actions(utilities.Driver.getDriver());
+        actions.moveToElement(element).perform();
+    }
+
     public static String getScreenshot(String name) throws IOException {
 
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -95,10 +110,6 @@ public class ReusableMethods {
     public static WebElement waitForClickablility(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(utilities.Driver.getDriver(), Duration.ofSeconds(3));
         return wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-    public static void hover(WebElement element) {
-        Actions actions = new Actions(utilities.Driver.getDriver());
-        actions.moveToElement(element).perform();
     }
 
 
@@ -301,5 +312,6 @@ public class ReusableMethods {
       // ReusableMethods.jseWithClick(utilities.Driver.getDriver(), CreateSurgeryList_Page.refreshButton);
         Thread.sleep(2000);
     }
+
 
 }

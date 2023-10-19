@@ -15,23 +15,30 @@ public class BookPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     @FindBy(xpath = "//*[@id='search']//span[3]")
     private WebElement bookResult;
 
-    @FindBy(xpath = "(//*[@id='search']//span[@class='a-size-base-plus a-color-base a-text-normal'])[1]")
+    @FindBy(xpath = "(//div[contains(@class,'a-section aok-relative')]//img)[1]")
     private WebElement firstBook;
 
-
+    @FindBy(css= "img[alt='Sponsorlu Reklam - All You Need Is Kill - Öldür Yeter 1']")
+    private WebElement lastBook;
 
     public void checkResultBook() {
 
         Assert.assertTrue(ReusableMethods.getElementText(bookResult).contains("book"));
 
     }
+
     public void clickFirstBook() {
 
-        ReusableMethods.jseWithClick(driver,firstBook);
+        ReusableMethods.jseWithClick(driver, firstBook);
     }
 
 
+    public void clickLastBook() {
+
+      ReusableMethods.scrollAndClickElement(driver,lastBook);
+    }
 }
