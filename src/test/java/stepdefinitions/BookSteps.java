@@ -31,4 +31,20 @@ public class BookSteps {
         bookPage.clickLastBook();
 
     }
+
+
+    @And("Should see on book page and click sort by button on book page")
+    public void shouldSeeOnBookPageAndClickSortByButtonOnBookPage() {
+        bookPage.seeAndClickSortByButton();
+    }
+
+    @And("Select low to high on book page")
+    public void selectLowToHighOnBookPage() {
+        bookPage.selectLowtoHigh();
+    }
+
+    @Then("Verify {string} on book page")
+    public void verifyOnBookPage(String name) {
+        bookPage.verifyBookName(name);
+    }
 }

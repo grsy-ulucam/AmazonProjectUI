@@ -24,3 +24,13 @@ Feature: Add a product the basket
       | quantity |
       |   2      |
 
+
+    Scenario Outline: See sort by low to high price books
+      When Search a "book" in search bar on home page
+      And  Should see on book page and click sort by button on book page
+      And  Select low to high on book page
+      Then Verify "<first book>" on book page
+      Examples:
+        |       first book          |
+        | Annem Sizi Derse Bekliyor |
+
