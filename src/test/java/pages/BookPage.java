@@ -23,17 +23,24 @@ public class BookPage {
     @FindBy(xpath = "(//div[contains(@class,'a-section aok-relative')]//img)[1]")
     private WebElement firstBook;
 
-    @FindBy(xpath= "//img[@data-image-index='49']")
+    @FindBy(xpath = "//img[@data-image-index='49']")
     private WebElement lastBook;
 
     @FindBy(id = "a-autoid-0-announce")
     private WebElement sortByButton;
 
     @FindBy(css = "a#s-result-sort-select_1")
-    private  WebElement lowToHighButton;
+    private WebElement lowToHighButton;
 
     @FindBy(xpath = "(//a[contains(@class,'a-link-normal s-underline-text')]//span)[1]")
-    private  WebElement motherBook;
+    private WebElement motherBook;
+
+    @FindBy(xpath = "//span[text()='500 TL ve Üzeri']")
+    private WebElement fiveHunButton;
+
+    @FindBy(xpath = "//span[text()='The Antiquarian Sticker Book: Over 1,000 Exquisite Victorian Stickers (The Antiquarian Sticker Book Series)']")
+    private WebElement firstFiveHunBook;
+
 
     public void checkResultBook() {
 
@@ -48,24 +55,38 @@ public class BookPage {
 
     public void clickLastBook() {
 
-      ReusableMethods.scrollAndClickElement(driver,lastBook);
+        ReusableMethods.scrollAndClickElement(driver, lastBook);
     }
 
     public void seeAndClickSortByButton() {
 
         Assert.assertTrue(ReusableMethods.getElementText(bookResult).contains("book"));
         ReusableMethods.hover(sortByButton);
-        ReusableMethods.jseWithClick(driver,sortByButton);
+        ReusableMethods.jseWithClick(driver, sortByButton);
     }
 
     public void selectLowtoHigh() {
 
-        ReusableMethods.jseWithClick(driver,lowToHighButton);
+        ReusableMethods.jseWithClick(driver, lowToHighButton);
     }
 
     public void verifyBookName(String name) {
 
         Assert.assertTrue(ReusableMethods.getElementText(motherBook).equals(name));
+
+    }
+
+    public void clickButton() {
+
+        ReusableMethods.scrollToElement(driver,fiveHunButton);
+        ReusableMethods.hover(fiveHunButton);
+        ReusableMethods.jseWithClick(driver,fiveHunButton);
+
+    }
+
+    public void confirmFirstBook(String book) {
+
+        Assert.assertTrue(ReusableMethods.getElementText(firstFiveHunBook).contains(book));
 
     }
 }

@@ -20,6 +20,12 @@ import java.util.Random;
 
 
 public class ReusableMethods {
+
+        public static void scrollToElement(WebDriver driver, WebElement element) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
     public static boolean verifyTextInList(List<String> textList, String targetText) {
         for (String text : textList) {
             if (text != null && text.equals(targetText)) {

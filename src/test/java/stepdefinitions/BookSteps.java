@@ -47,4 +47,15 @@ public class BookSteps {
     public void verifyOnBookPage(String name) {
         bookPage.verifyBookName(name);
     }
+
+
+    @And("Click five hundred and over button on book page")
+    public void clickFiveHundredAndOverButtonOnBookPage() {
+        bookPage.clickButton();
+    }
+
+    @Then("User should see {string} on book page")
+    public void userShouldSeeOnBookPage(String book) {
+        bookPage.confirmFirstBook(book);
+    }
 }

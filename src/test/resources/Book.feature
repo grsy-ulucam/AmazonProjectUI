@@ -30,7 +30,17 @@ Feature: Add a product the basket
       And  Should see on book page and click sort by button on book page
       And  Select low to high on book page
       Then Verify "<first book>" on book page
+
       Examples:
         |       first book          |
         | Annem Sizi Derse Bekliyor |
+
+      Scenario Outline: Choose price 500 and over for search book price
+        When Search a "book" in search bar on home page
+        And  Click five hundred and over button on book page
+        Then User should see "<book>" on book page
+
+        Examples:
+          | book|
+          | Sticker Book |
 
